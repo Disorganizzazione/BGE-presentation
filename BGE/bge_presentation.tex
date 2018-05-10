@@ -24,7 +24,7 @@
 	\begin{frame}
 		\frametitle{Sommario}
 		\begin{itemize}
-			\item Introduzione \\ {\footnotesize\hspace{1em} Casi d'uso e prospettive per il Blender Game Engine}
+			\item Introduzione \\ {\footnotesize\hspace{1em} Casi d'uso e caratteristiche generali per il Blender Game Engine}
 			\item Strumenti \\ {\footnotesize\hspace{1em} Editor grafico e scripting con Python}
 			\item Componenti \\ {\footnotesize\hspace{1em} Sensori, controller e attuatori}
 		\end{itemize}
@@ -35,10 +35,38 @@
 	\setcounter{showSlideNumbers}{1}
 	\section{Introduzione}
 		\begin{frame}
-			\frametitle{Casi d'uso}
+			\frametitle{Caratteristiche generali}
+			\begin{itemize}
+				\item Casi d'uso: sviluppo di giochi e simulazioni interattive in 3D 
+				\item C++
+				\item Rendering in tempo reale
+				\item Interfaccia: editor logico con interfaccia grafica 
+				\item Supportato scripting in Python
+				\item Possibilità di esportare l'applicazione per ambienti Linux, macOS, e MS-Windows
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Librerie}
+			\begin{itemize}
+				\item Audaspace \\ {\footnotesize\hspace{1em} Controllo dell'audio}
+				\item Bullet \\ {\footnotesize\hspace{1em} Rilevamento delle collisioni e simulazione di fisica} 
+				\item Recast \\ {\footnotesize\hspace{1em} Costruzione di percorsi}
+				\item Detour \\ {\footnotesize\hspace{1em} Pathfinding e ragionamento spaziale}
+			\end{itemize}
 		\end{frame}
 		\begin{frame}
 			\frametitle{Prospettive}
+			\textcolor{BlenderOrange}{Il BGE non sarà più supportato a partire dalla versione 2.8 di Blender}
+			...
+		\end{frame}
+		\begin{frame}
+			\frametitle{Sviluppo di applicazioni}
+			\begin{enumerate}
+				\item Creazione degli elementi visuali (modelli 3d o immagini)
+				\item Uso dei blocchi logici per permettere l'interazione con la scena (programmazione a eventi)
+				\item Creazione di una o più "macchine da presa" per il rendering e modifica dei parametri di visualizzazione
+				\item Esportazione dell'applicazione
+			\end{enumerate}
 		\end{frame}
 	
 	\section{Strumenti}
