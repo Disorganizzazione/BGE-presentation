@@ -59,6 +59,13 @@
 		\draw[fill=BlenderOrange,draw=none] (0, 0.15) rectangle(0.075, 0.225);
 	}
 }
+% make the subitems also pixelated dots
+\setbeamertemplate{itemize subsubitem}{
+	\tikz{
+		\draw[fill=BlenderOrange,draw=none] (0.050, 0.050) rectangle(0.15, 0.15);
+
+	}
+}
 \fi
 
 % disable navigation
