@@ -81,16 +81,16 @@
 			\frametitle{Editor Grafico}
 			\begin{enumerate}
 			\item [img]
-				\item \textbf{Logic Bricks}: funzioni programmate; Modificabili e combinabili, sono:
+				\item \textbf{Logic Bricks}: funzioni programmate; Sono modificabili, combinabili e:
 					\begin{itemize}
-						\item Suddivisi in tre tipi (colonne): 
+						\item sono suddivisi in tre tipi (colonne): 
 						\begin{itemize}
-							\item\textbf{Sensors}: si attivano al verificarsi di un evento, 
-							\item \textbf{Controllers}: operano sul'input che ricevono dai sensori
-							\item \textbf{Actuators}: interagiscono con il gioco;
+							\item\textbf{Sensors}: \footnotesize si attivano al verificarsi di un evento, 
+							\item \textbf{Controllers}: \footnotesize operano sul'input che ricevono dai sensori
+							\item \textbf{Actuators}: \footnotesize interagiscono con il gioco;
 						\end{itemize}
-						Quando un Sensore è positivo invia un impulso al Controllore che valuta la condizione e se è il caso innesca l’Attuatore.
-						\item Collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra sensor->controller e controller->actuator
+						Se un Sensore è positivo invia un impulso al Controllore che valuta la condizione ed innesca l’Attuatore.
+						\item sono collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra sensor->controller e controller->actuator
 					\end{itemize}
 			\end{enumerate}
 		\end{frame}
@@ -105,12 +105,12 @@
 		\begin{frame}		%SENSORS
 			\frametitle{Logic - Sensori}
 			\begin{itemize}
-				\item Blocchi logici che si mettono in ascolto per un determinato evento \textit{(event listeners)} e cambiano stato quando esso si verifica.
-				\item Di default, ad ogni cambio di stato, i sensori innestano i Controller ad essi collegati;
+				\item Blocchi logici che \textcolor{BlenderOrange}{si mettono in ascolto} per un determinato evento \textit{(event listeners)} e \textcolor{BlenderOrange}{cambiano stato }quando esso si verifica.
+				\item Di default, i sensori \textcolor{BlenderOrange}{innestano i Controller} ad essi collegati ad ogni cambio di stato;
 				\begin{itemize}
-					\item \textit{"True level triggering"} ([img]) li innesta solo se lo stato del sensore è positivo
-					\item \textit{"False level triggering"} ([img]) li innesta solo se lo stato del sensore è negativo
-					\item \textit{"Freq"} imposta il ritardo tra i trigger ripetuti, in frame (tick logici)
+					\item \textit{"True level triggering"} ([img]) \\ {\footnotesize\hspace{1em} innesta i controllers solo se lo stato del sensore è positivo}
+					\item \textit{"False level triggering"} ([img]) \\ {\footnotesize\hspace{1em}innesta i controllers solo se lo stato del sensore è negativo}
+					\item \textit{"Freq"} \\ {\footnotesize\hspace{1em}imposta il ritardo tra i trigger ripetuti, in frame (tick logici)}
 				\end{itemize}
 				\item [img]
 			\end{itemize}
@@ -119,7 +119,7 @@
 			\frametitle{Logic - Tipi di Sensori}
 			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":\\
 			\begin{quote}
-			\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)
+			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)}
 			\end{quote}
 						
 			\begin{itemize}
@@ -133,11 +133,11 @@
 			\frametitle{Logic - Tipi di Sensori}
 			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":
 			\begin{quote}
-			\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)
+			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)}
 			\end{quote}
 			\begin{itemize}
 				\item \textbf{Keyboard}: rileva la pressione di un tasto da noi assegnato %Joystick--analogo
-				\item \textbf{Mouse}: rileva gli eventi del mouse. Eventi: \textit{Over any, Over, Movement, Wheel down/up, R button, L button, M button.}
+				\item \textbf{Mouse}: rileva gli eventi del mouse. \\ {\footnotesize\hspace{1em}Eventi: \textit{Over any, Over, Movement, Wheel down/up, R/L/M button.}}
 				\item \textbf{Near}: si attiva quando rileva degli oggetti ad una distanza x dall'oggetto proprietario.
 				\item \textbf{Properties}: rileva cambiamenti nelle Proprietà (variabili) del suo oggetto.
 			\end{itemize}
