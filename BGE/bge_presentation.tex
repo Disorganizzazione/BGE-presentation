@@ -117,9 +117,9 @@
 		\end{frame}		
 		\begin{frame}
 			\frametitle{Logic - Tipi di Sensori}
-			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":\\
+			I principali sensori, aggiungibili con il pulsante "Add Sensor":\\
 			\begin{quote}
-			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)}
+			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando si attiva; quando si disattiva invia un impulso negativo (FALSE)}
 			\end{quote}
 						
 			\begin{itemize}
@@ -131,9 +131,9 @@
 		\end{frame}	
 		\begin{frame}
 			\frametitle{Logic - Tipi di Sensori}
-			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":
+			I principali sensori, aggiungibili con il pulsante "Add Sensor":
 			\begin{quote}
-			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)}
+			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando si attiva; quando si disattiva invia un impulso negativo (FALSE)}
 			\end{quote}
 			\begin{itemize}
 				\item \textbf{Keyboard}: rileva la pressione di un tasto da noi assegnato %Joystick--analogo
@@ -146,9 +146,31 @@
 		\begin{frame}
 			\frametitle{Logic - Controllers} %CONTROLLERS
 			\begin{itemize}
-				\item Blocchi logici che eseguono operazioni logiche sull'output del Sensore ed attivano gli Actuators ad esso connessi
+				\item Blocchi logici che \textcolor{BlenderOrange}{eseguono operazioni} sull'output del Sensore ed, in base a determinate condizioni, \textcolor{BlenderOrange}{attivano gli Actuators} ad esso connessi.
+				\item[1.] \textbf{States}: mostra la griglia degli stati, per spostare il Controller (e tutti i suoi blocchi collegati) in un altro State dell'oggetto.
+				\item[2.]Esegue il Controller prima degli altri
 			\end{itemize}
+			[img]
 		\end{frame}	
+		\begin{frame}
+			\frametitle{Logic - Tipi di Controllers}
+			I principali controllori, aggiungibili con il pulsante "Add Controller":
+			\begin{quote}
+			\textcolor{BlenderOrange}{\textbf{Nota}: un impulso positivo (TRUE) inviato dal Controller, attiva i suoi Actuators; uno negativo (FALSE) li disattiva.}
+			\end{quote}
+			\begin{itemize}
+				\item \textbf{And}: {\footnotesize TRUE se riceve \textbf{tutti} impulsi positivi, FALSE altrimenti;}
+				\item \textbf{Or}: {\footnotesize TRUE se riceve \textbf{almeno} un impulso positivo, FALSE altrimenti;}
+				\item \textbf{Nand}: {\footnotesize TRUE se riceve \textbf{almeno} un impulso negativo, FALSE se riceve \textbf{tutti} impulsi positivi;}
+				\item \textbf{Nor}: {\footnotesize TRUE se non riceve \textbf{nessun} impulso positivo, FALSE altrimenti;}
+				\item \textbf{Xor}: {\footnotesize TRUE se riceve \textbf{un solo} impulso positivo, FALSE altrimenti;}
+				\item \textbf{Xnor}: {\footnotesize TRUE se riceve \textbf{un solo} impulso negativo, FALSE altrimenti;}
+				\item \textbf{Expression}: {\footnotesize valuta un'espressione booleana scritta dall'utente;}
+				\item \textbf{Python}: {\footnotesize scripting in python, v. slides successive.}
+			\end{itemize}
+		\end{frame}
+		
+		
 		\begin{frame}
 			\frametitle{Logic - Actuators} %ACTUATORS
 			\begin{itemize}
