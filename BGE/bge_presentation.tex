@@ -72,7 +72,94 @@
 	\section{Strumenti}
 		\begin{frame}
 			\frametitle{Editor grafico}
+			\begin{itemize}
+				\item L'editor Logico è il metodo principale di impostare e modificare la logica del gioco per i vari attori che lo compongono
+				\item La logica dei singoli oggetti selezionati nella 3D View è rappresentata dai Blocchi Logici (\textbf{Logic Bricks})
+			\end{itemize}
 		\end{frame}
+		\begin{frame}
+			\frametitle{Editor Grafico}
+			\begin{enumerate}
+			\item [img]
+				\item \textbf{Logic Bricks}: funzioni programmate; Modificabili e combinabili, sono:
+					\begin{itemize}
+						\item Suddivisi in tre tipi (colonne): 
+						\begin{itemize}
+							\item\textbf{Sensors}: si attivano al verificarsi di un evento, 
+							\item \textbf{Controllers}: operano sul'input che ricevono dai sensori
+							\item \textbf{Actuators}: interagiscono con il gioco;
+						\end{itemize}
+						Quando un Sensore è positivo invia un impulso al Controllore che valuta la condizione e se è il caso innesca l’Attuatore.
+						\item Collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra sensor->controller e controller->actuator
+					\end{itemize}
+			\end{enumerate}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Editor Grafico}
+			\begin{itemize}
+			\item [img]
+				\item[2.] \textbf{Properties}: variabili dei linguaggi di programmazione; Usate per salvare ed accedere dati associati ad un oggetto o del gioco stesso
+				\item[3.] \textbf{States}: stati in cui può trovarsi un oggetto; usati per definire comportamenti diversi in situazioni diverse %sleeping, awake, dead
+			\end{itemize}
+		\end{frame}
+		\begin{frame}		%SENSORS
+			\frametitle{Logic - Sensori}
+			\begin{itemize}
+				\item Blocchi logici che si mettono in ascolto per un determinato evento \textit{(event listeners)} e cambiano stato quando esso si verifica.
+				\item Di default, ad ogni cambio di stato, i sensori innestano i Controller ad essi collegati;
+				\begin{itemize}
+					\item \textit{"True level triggering"} ([img]) li innesta solo se lo stato del sensore è positivo
+					\item \textit{"False level triggering"} ([img]) li innesta solo se lo stato del sensore è negativo
+					\item \textit{"Freq"} imposta il ritardo tra i trigger ripetuti, in frame (tick logici)
+				\end{itemize}
+				\item [img]
+			\end{itemize}
+		\end{frame}		
+		\begin{frame}
+			\frametitle{Logic - Tipi di Sensori}
+			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":\\
+			\begin{quote}
+			\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)
+			\end{quote}
+						
+			\begin{itemize}
+				\item \textbf{Actuator}: rileva quando un particolare Actuator riceve un impulso di attivazione o di disattivazione
+				\item \textbf{Always}: innesta sempre i relativi Controllers (ad ogni tick logico)
+				\item \textbf{Collision}: rileva quando l'oggetto proprietario collide (tocca) un'altro oggetto
+				\item \textbf{Delay}: ritarda l'invio dell'impulso positivo
+			\end{itemize}
+		\end{frame}	
+		\begin{frame}
+			\frametitle{Logic - Tipi di Sensori}
+			Di seguito, i sensori principali, aggiungibili con il pulsante "Add Sensor":
+			\begin{quote}
+			\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando l'evento si verifica; quando l'evento finisce invia un impulso negativo (FALSE)
+			\end{quote}
+			\begin{itemize}
+				\item \textbf{Keyboard}: rileva la pressione di un tasto da noi assegnato %Joystick--analogo
+				\item \textbf{Mouse}: rileva gli eventi del mouse. Eventi: \textit{Over any, Over, Movement, Wheel down/up, R button, L button, M button.}
+				\item \textbf{Near}: si attiva quando rileva degli oggetti ad una distanza x dall'oggetto proprietario.
+				\item \textbf{Properties}: rileva cambiamenti nelle Proprietà (variabili) del suo oggetto.
+			\end{itemize}
+		\end{frame}	
+		
+		\begin{frame}
+			\frametitle{Logic - Controllers} %CONTROLLERS
+			\begin{itemize}
+				\item Blocchi logici che eseguono operazioni logiche sull'output del Sensore ed attivano gli Actuators ad esso connessi
+			\end{itemize}
+		\end{frame}	
+		\begin{frame}
+			\frametitle{Logic - Actuators} %ACTUATORS
+			\begin{itemize}
+				\item Blocchi logici che interagiscono direttamente con il gioco
+			\end{itemize}
+		\end{frame}			
+		
+		\begin{frame}
+			\frametitle{Scripting con Python}
+		\end{frame}	
+		
 		\begin{frame}
 			\frametitle{Scripting con Python}
 		\end{frame}	
