@@ -1,6 +1,19 @@
 %!TEX program = xelatex
 \documentclass{beamer}
 
+\def\image[#1][#2]{
+	\begin{figure}[H]
+		\centering
+		\includegraphics[#2]{#1}
+\end{figure}}
+
+\def\captionimage[#1][#2]#3{
+	\begin{figure}[H]
+		\centering
+		\includegraphics[#2]{#1}
+		\caption{#3}
+\end{figure}}
+
 \logo{\includegraphics[height=0.8cm]{logo.png}\vspace{239pt}}
 
 
@@ -58,7 +71,7 @@
 			\frametitle{Prospettive}
 			\begin{quotation}\small 
 				"(...) I also propose to refocus the current game engine (...) I propose to make the GE to become a real part of Blender code – to make it not separated anymore. This would make it more supported, more stable and (I”m sure) much more fun to work on as well. (...) What should then be dropped is the idea to make Blender have an embedded “true” game engine. (...) We never managed to make something with the portability and quality of Unreal or Crysis… or even Unity3D. And Blender's GPL license is not helping here much either. (...) The main cool feature of our GE is that it was integrated with a 3D tool, to allow people to make 3D interaction for walkthroughs, for scientific sims, or game prototypes. If we bring back this (original) design focus for a GE, I think we still get something unique and cool, with seamless integration of realtime and “offline” 3D". 
-				\\ \textcolor{BlenderOrange}{\textbf{-Ton Roosendaal, creator of Blender}} 
+				\\ \textcolor{BlenderOrange}{\textbf{-Ton Roosendaal, creator of Blender}, \href{https://code.blender.org/2013/06/blender-roadmap-2-7-2-8-and-beyond/}{Blender roadmap}} 
 			\end{quotation} 
 		\end{frame}
 		\begin{frame}
@@ -80,42 +93,48 @@
 			\end{itemize}
 		\end{frame}
 		\begin{frame}
-			\frametitle{Editor Grafico}
-			\begin{enumerate}
-			\item [img]
-				\item \textbf{Logic Bricks}: funzioni programmate; Sono modificabili, combinabili e:
-					\begin{itemize}
-						\item sono suddivisi in tre tipi (colonne): 
-						\begin{itemize}
-							\item\textbf{Sensors}: \footnotesize si attivano al verificarsi di un evento, 
-							\item \textbf{Controllers}: \footnotesize operano sul'input che ricevono dai sensori
-							\item \textbf{Actuators}: \footnotesize interagiscono con il gioco;
-						\end{itemize}
-						Se un Sensore è positivo invia un impulso al Controllore che valuta la condizione ed innesca l’Attuatore.
-						\item sono collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra sensor->controller e controller->actuator
-					\end{itemize}
-			\end{enumerate}
+			\frametitle{Editor grafico - game logic}
+			\image[images/gamegui.png][scale=0.16]
+			Interfaccia consigliata per l'uso del BGE
 		\end{frame}
 		\begin{frame}
-			\frametitle{Editor Grafico}
-			\begin{itemize}
-			\item [img]
-				\item[2.] \textbf{Properties}: variabili dei linguaggi di programmazione; Usate per salvare ed accedere dati associati ad un oggetto o del gioco stesso
-				\item[3.] \textbf{States}: stati in cui può trovarsi un oggetto; usati per definire comportamenti diversi in situazioni diverse %sleeping, awake, dead
-			\end{itemize}
+			\frametitle{Editor Grafico - logic bricks}
+			\image[images/logic_bricks.png][scale=0.27]
+			Funzioni programmate. Sono modificabili, combinabili e:
+				\begin{itemize}
+					\item sono suddivisi in tre tipi (colonne): 
+					\begin{itemize}
+						\item\textbf{Sensors}: \footnotesize si attivano al verificarsi di un evento, 
+						\item \textbf{Controllers}: \footnotesize operano sul'input che ricevono dai sensori
+						\item \textbf{Actuators}: \footnotesize interagiscono con il gioco.
+					\end{itemize}
+						Se un Sensore è positivo invia un impulso al Controllore che valuta la condizione ed innesca l’Attuatore.
+						\item sono collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra \textit{sensor e controller} e \textit{controller e actuator}
+					\end{itemize}
 		\end{frame}
+		\begin{frame}
+			\frametitle{Editor Grafico - properties}
+			\image[images/props.png][scale=0.4]
+			\textbf{Properties}: variabili dei linguaggi di programmazione; Usate per salvare ed accedere dati associati ad un oggetto o del gioco stesso
+		\end{frame}
+		\begin{frame}
+			\frametitle{Editor Grafico - states}
+			\image[images/states.png][scale=0.3]
+			\textbf{States}: stati in cui può trovarsi un oggetto; usati per definire comportamenti diversi in situazioni diverse %sleeping, awake, dead
+		\end{frame}
+	\section{Componenti}
 		\begin{frame}		%SENSORS
 			\frametitle{Logic - Sensori}
 			\begin{itemize}
-				\item Blocchi logici che \textcolor{BlenderOrange}{si mettono in ascolto} per un determinato evento \textit{(event listeners)} e \textcolor{BlenderOrange}{cambiano stato }quando esso si verifica.
-				\item Di default, i sensori \textcolor{BlenderOrange}{innestano i Controller} ad essi collegati ad ogni cambio di stato;
+				\item \textit{(Event listeners)}: \textcolor{BlenderOrange}{cambiano stato} quando l'evento che attendono si verifica.
+				\item Di default, i sensori \textcolor{BlenderOrange}{innescano i Controller} ad essi collegati ad ogni cambio di stato:
 				\begin{itemize}
-					\item \textit{"True level triggering"} ([img]) \\ {\footnotesize\hspace{1em} innesta i controllers solo se lo stato del sensore è positivo}
-					\item \textit{"False level triggering"} ([img]) \\ {\footnotesize\hspace{1em}innesta i controllers solo se lo stato del sensore è negativo}
-					\item \textit{"Freq"} \\ {\footnotesize\hspace{1em}imposta il ritardo tra i trigger ripetuti, in frame (tick logici)}
+					\item \textit{"True level triggering"} \\ {\footnotesize\hspace{1em} innesta i controllers solo se lo stato del sensore è positivo}
+					\item \textit{"False level triggering"} \\ {\footnotesize\hspace{1em}innesta i controllers solo se lo stato del sensore è negativo}
+					\item \textit{"Skip"} \\ {\footnotesize\hspace{1em}imposta il ritardo tra i trigger ripetuti, in frame (tick logici)}
 				\end{itemize}
-				\item [img]
 			\end{itemize}
+		%? img
 		\end{frame}		
 		\begin{frame}
 			\frametitle{Logic - Tipi di Sensori}
@@ -126,13 +145,13 @@
 						
 			\begin{itemize}
 				\item \textbf{Actuator}: rileva quando un particolare Actuator riceve un impulso di attivazione o di disattivazione
-				\item \textbf{Always}: innesta sempre i relativi Controllers (ad ogni tick logico)
+				\item \textbf{Always}: innesca sempre i relativi Controllers (ad ogni tick logico)
 				\item \textbf{Collision}: rileva quando l'oggetto proprietario collide (tocca) un'altro oggetto
 				\item \textbf{Delay}: ritarda l'invio dell'impulso positivo
 			\end{itemize}
 		\end{frame}	
 		\begin{frame}
-			\frametitle{Logic - Tipi di Sensori}
+			\frametitle{Logic - Tipi di Sensori - 2}
 			I principali sensori, aggiungibili con il pulsante "Add Sensor":
 			\begin{quote}
 			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando si attiva; quando si disattiva invia un impulso negativo (FALSE)}
@@ -147,12 +166,13 @@
 		
 		\begin{frame}
 			\frametitle{Logic - Controllers} %CONTROLLERS
-			\begin{itemize}
-				\item Blocchi logici che \textcolor{BlenderOrange}{eseguono operazioni} sull'output del Sensore ed, in base a determinate condizioni, \textcolor{BlenderOrange}{attivano gli Actuators} ad esso connessi.
-				\item[1.] \textbf{States}: mostra la griglia degli stati, per spostare il Controller (e tutti i suoi blocchi collegati) in un altro State dell'oggetto.
-				\item[2.]Esegue il Controller prima degli altri
-			\end{itemize}
-			[img]
+
+			Blocchi logici che \textcolor{BlenderOrange}{eseguono operazioni} sull'output del Sensore ed, in base a determinate condizioni, \textcolor{BlenderOrange}{attivano gli Actuators} ad esso connessi.
+			\begin{enumerate}
+				\item \textbf{States}: mostra la griglia degli stati, per spostare il Controller (e tutti i suoi blocchi collegati) in un altro State dell'oggetto.
+				\item Esegue il Controller prima degli altri
+			\end{enumerate}
+			\image[images/contr.png][scale=0.3]
 		\end{frame}	
 		\begin{frame}
 			\frametitle{Logic - Tipi di Controllers}
@@ -187,16 +207,5 @@
 		\begin{frame}
 			\frametitle{Scripting con Python}
 		\end{frame}	
-	
-	\section{Componenti}
-		\begin{frame}
-			\frametitle{Sensori}
-		\end{frame}
-		\begin{frame}
-			\frametitle{Controller}
-		\end{frame}
-		\begin{frame}
-			\frametitle{Attuatori}
-		\end{frame}
 
 \end{document}
