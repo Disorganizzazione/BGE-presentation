@@ -203,8 +203,36 @@
 			\frametitle{Logic - Actuators} %ACTUATORS
 			\begin{itemize}
 				\item Blocchi logici che interagiscono direttamente con il gioco
+				\item Eseguono le loro funzioni solo quando ricevono un \textbf{impulso positivo} dai Controllers ad essi collegati
 			\end{itemize}
 		\end{frame}			
+		\begin{frame}
+			\frametitle{Logic - Tipi di Actuators}
+			I principali attuatori, aggiungibili con il pulsante "Add Actuators":
+			\begin{itemize}
+				\item \textbf{Action}: {\footnotesize Riproduce e controlla le azioni di animazioni (visibile solo se è selezionata un'armatura);} %le azioni sono salvate nell'armatura!
+				\item \textbf{Camera}: {\footnotesize fa sì che la camera segua un determinato oggetto;}
+				\item \textbf{Constraints}: {\footnotesize  pone un vincolo sull’oggetto proprietario; \\I possibili vincoli sono: Orientation Distance Location}
+				\item \textbf{Edit Object}: {\footnotesize permette di modificare l'oggetto proprietario; \\I possibili moidificatori sono: track to, replace mesh, end/add object;}
+				\item \textbf{Filter 2D}: {\footnotesize aggiunge filtri applicati al render finale degli oggetti;}
+				\item \textbf{Game}: {\footnotesize controlla l'intero gioco (es. ricomincia, carica, esci..);}
+				\item \textbf{Mouse}: {\footnotesize Permette la visibilità del cursore e la rotazione tramite il mouse;}
+			\end{itemize}
+		\end{frame}
+				\begin{frame}
+			\frametitle{Logic - Tipi di Actuators - 2}
+			I principali attuatori, aggiungibili con il pulsante "Add Actuators":
+			\begin{itemize}
+				\item \textbf{Motion}: {\footnotesize controlla il movimento di un oggetto; I possibili tipi di movimento sono: Simple, Servo control, Character.}
+				\item \textbf{Parent}
+				\item \textbf{Property}
+				\item \textbf{Scene}: {\footnotesize controlla le scene nel \textit{blend-file};}
+				\item \textbf{Filter 2D}: {\footnotesize aggiunge filtri applicati al render finale degli oggetti;}
+				\item \textbf{Steering}: {\footnotesize fornisce vari metodi di pathfinding per un determinato oggetto;\\I vari metodi possono essere: Seek, Flee, Path following;}
+				\item \textbf{Sound}
+				\item \textbf{State}: {\footnotesize permette di gestire i vari stati del gioco;}
+			\end{itemize}
+		\end{frame}
 		
 		\begin{frame}
 			\frametitle{Scripting con Python}
