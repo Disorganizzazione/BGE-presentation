@@ -128,6 +128,22 @@
 			\image[images/states.png][scale=0.3]
 			\textbf{States}: stati in cui può trovarsi un oggetto; usati per definire comportamenti diversi in situazioni diverse %sleeping, awake, dead
 		\end{frame}
+		\begin{frame}
+		\frametitle{Scripting con Python - 1}
+		Motivazioni per usare Python nel BGE:
+			\begin{itemize}
+				\item possibilità di gestire più oggetti contemporaneamente
+				\item accesso a funzionalità avanzate di Blender
+				\item accesso a funzionalità del Python non presenti in Blender
+				\item possibilità di controllare dispositivi esterni
+				\item accesso a strumenti di debugging.
+			\end{itemize}
+		\end{frame}	
+		\begin{frame}
+		\frametitle{Scripting con Python - 2}
+		Va comunque tenuto presente che \textcolor{BlenderOrange}{il Python non può essere utilizzato \textit{al posto} dei blocchi logici}: nel BGE, uno script può essere visto come un controller più sofisticato, da utilizzare al posto di quelli booleani, che determinerà la relazione che intercorre tra sensori e attuatori di un oggetto. Essi, infatti -i sensori, 	gli attuatori e persino l'oggetto da cui è chiamato lo script- sono tutti attributi del controller, e in ogni caso gli script devono essere necessariamente chiamati da un controller.
+		\end{frame}	
+	
 	\section{Componenti}
 		\begin{frame}		%SENSORS
 			\frametitle{Logic - Sensori}
@@ -258,13 +274,4 @@
 				\item\textbf{Initial}: determina in quale tra gli states l'oggetto si troverà appena avviato il gioco
 			\end{itemize}
 		\end{frame}	
-		
-		\begin{frame}
-			\frametitle{Scripting con Python}
-		\end{frame}	
-		
-		\begin{frame}
-			\frametitle{Scripting con Python}
-		\end{frame}	
-
 \end{document}
