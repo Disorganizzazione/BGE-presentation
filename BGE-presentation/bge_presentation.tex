@@ -1,6 +1,8 @@
 %!TEX program = xelatex
 \documentclass{beamer}
 
+\def\code#1{\texttt{#1}}
+
 \def\image[#1][#2]{
 	\begin{figure}[H]
 		\centering
@@ -149,9 +151,9 @@
 			Esempio di uso della libreria Audaspace per il controllo dell'audio tramite script Python.
 		\end{frame}
 	
-	\section{Componenti}
+	\section{Logic}
 		\begin{frame}		%SENSORS
-			\frametitle{Logic - Sensori}
+			\frametitle{Sensori}
 			\begin{itemize}
 				\item \textit{(Event listeners)}: \textcolor{BlenderOrange}{cambiano stato} quando l'evento che attendono si verifica.
 				\item Di default, i sensori \textcolor{BlenderOrange}{innescano i Controller} ad essi collegati ad ogni cambio di stato:
@@ -164,7 +166,7 @@
 		%? img
 		\end{frame}		
 		\begin{frame}
-			\frametitle{Logic - Tipi di Sensori}
+			\frametitle{Tipi di Sensori}
 			I principali sensori, aggiungibili con il pulsante "Add Sensor":\\
 			\begin{quote}
 			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando si attiva; quando si disattiva invia un impulso negativo (FALSE)}
@@ -178,7 +180,7 @@
 			\end{itemize}
 		\end{frame}	
 		\begin{frame}
-			\frametitle{Logic - Tipi di Sensori - 2}
+			\frametitle{Tipi di Sensori - 2}
 			I principali sensori, aggiungibili con il pulsante "Add Sensor":
 			\begin{quote}
 			\textcolor{BlenderOrange}{\textbf{Nota}: Un sensore invia un impulso positivo (TRUE) a tutti i suoi Controllers quando si attiva; quando si disattiva invia un impulso negativo (FALSE)}
@@ -192,7 +194,7 @@
 		\end{frame}	
 		
 		\begin{frame}
-			\frametitle{Logic - Controllers} %CONTROLLERS
+			\frametitle{Controllers} %CONTROLLERS
 
 			Blocchi logici che \textcolor{BlenderOrange}{eseguono operazioni} sull'output del Sensore ed, in base a determinate condizioni, \textcolor{BlenderOrange}{attivano gli Actuators} ad esso connessi.
 			\begin{enumerate}
@@ -202,7 +204,7 @@
 			\image[images/contr.png][scale=0.3]
 		\end{frame}	
 		\begin{frame}
-			\frametitle{Logic - Tipi di Controllers}
+			\frametitle{Tipi di Controllers}
 			I principali controllori, aggiungibili con il pulsante "Add Controller":
 			\begin{quote}
 			\textcolor{BlenderOrange}{\textbf{Nota}: un impulso positivo (TRUE) inviato dal Controller, attiva i suoi Actuators; uno negativo (FALSE) li disattiva.}
@@ -221,14 +223,14 @@
 		
 		
 		\begin{frame}
-			\frametitle{Logic - Actuators} %ACTUATORS
+			\frametitle{Actuators} %ACTUATORS
 			\begin{itemize}
 				\item Blocchi logici che interagiscono direttamente con il gioco
 				\item Eseguono le loro funzioni solo quando ricevono un \textbf{impulso positivo} dai Controllers ad essi collegati
 			\end{itemize}
 		\end{frame}			
 		\begin{frame}
-			\frametitle{Logic - Tipi di Actuators}
+			\frametitle{Tipi di Actuators}
 			I principali attuatori, aggiungibili con il pulsante "Add Actuators":
 			\begin{itemize}
 				\item \textbf{Action}: {\footnotesize Riproduce e controlla le azioni di animazioni (visibile solo se è selezionata un'armatura);} %le azioni sono salvate nell'armatura!
@@ -241,7 +243,7 @@
 			\end{itemize}
 		\end{frame}
 				\begin{frame}
-			\frametitle{Logic - Tipi di Actuators - 2}
+			\frametitle{Tipi di Actuators - 2}
 			I principali attuatori, aggiungibili con il pulsante "Add Actuators":
 			\begin{itemize}
 				\item \textbf{Motion}: {\footnotesize controlla il movimento di un oggetto; I possibili tipi di movimento sono: Simple, Servo control, Character.}
@@ -256,7 +258,7 @@
 		\end{frame}
 		
 		\begin{frame}
-			\frametitle{Logic - Properties}
+			\frametitle{Properties}
 			\begin{itemize}
 				\item Equivalenti alle variabili nei linguaggi di programmazione
 				\item Memorizzate nell’oggetto proprietario
@@ -265,7 +267,7 @@
 			\end{itemize}
 		\end{frame}	
 		\begin{frame}
-			\frametitle{Logic - States}
+			\frametitle{States}
 			\begin{itemize}
 				\item Un oggetto può possedere stati diversi, ad ogni stato corrisponde un comportamento diverso %ex expl->sleep/awake/dead
 				\item Sono impostati ed usati mediante i \textit{Controllers}: solo questi ultimi sono direttamente controllati dal sistema di stati! \image[images/states.png][scale=0.3]
@@ -273,10 +275,28 @@
 			\end{itemize}
 		\end{frame}	
 		\begin{frame}
-			\frametitle{Logic - States - 2}
+			\frametitle{States - 2}
 			\begin{itemize}
 				\item\textbf{Visible}: sono tutti gli stati disponibili, quando uno state contiene dei logic bricks, in esso compare un pallino. Gli states visibili sono rappresentati dai quadrati di colore differente.
 				\item\textbf{Initial}: determina in quale tra gli states l'oggetto si troverà appena avviato il gioco
 			\end{itemize}
-		\end{frame}	
+		\end{frame}
+	\section{Camera}
+	\begin{frame}
+	\frametitle{Caratteristiche}
+		Per quanto simile alla camera nel normale sistema di rendering di Blender, è interessante soffermarsi sulla camera nel BGE, che presenta alcune caratteristiche particolari:
+		\begin{itemize}
+			\item non necessariamente statica, i suoi movimenti possono essere programmati
+			\item può seguire un oggetto nel gioco (ad es. il giocatore nei giochi in prima persona)
+			\item stereo vision
+			\item dome visualization
+		\end{itemize}
+	\end{frame}	
+	\begin{frame}
+	\frametitle{Uso della camera}
+	\begin{itemize}
+		\item all'avvio del BGE, l'inquadratura è scelta in base all'ultima 3D view. Per utilizzare una camera in particolare, occorre selezionarla e premere \code{Numpad0} prima di avviare l'engine
+		\item per seguire un oggetto, si seleziona prima la camera, poi l'oggetto da seguire e, con \code{Ctrl+P -> Make Parent}, si rende la camera "genitore" dell'oggetto \\ {\footnotesize \hspace{1em} NB: in questo modo, la camera ruota assieme all'oggetto seguito. \\ \hspace{1em} Per evitarlo, la camera va associata a un vertice dell'oggetto}
+	\end{itemize}
+	\end{frame}
 \end{document}
