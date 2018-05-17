@@ -137,3 +137,6 @@ sympy-plots-for-*.tex/
 
 # Blender
 *.blend1
+
+#Python cache
+__pycache__
