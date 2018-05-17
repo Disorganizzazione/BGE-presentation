@@ -39,8 +39,8 @@
 	\begin{frame}
 		\frametitle{Sommario}
 		\begin{itemize}
-			\item Introduzione \\ {\footnotesize\hspace{1em} Casi d'uso e caratteristiche generali per il Blender Game Engine}
-			\item Strumenti \\ {\footnotesize\hspace{1em} Editor grafico e scripting con Python}
+			\item Introduzione \\ {\footnotesize\hspace{1em} Casi d'uso, caratteristiche generali, problematiche e licenza}
+			\item Interfaccia \\ {\footnotesize\hspace{1em} Editor grafico, editor di testo e console Python}
 			\item Componenti \\ {\footnotesize\hspace{1em} Sensori, controller e attuatori}
 		\end{itemize}
 	\end{frame}
@@ -63,7 +63,7 @@
 		\begin{frame}
 			\frametitle{Licenza}
 			Il BGE, in quanto parte di Blender, è rilasciato sotto la licenza \hyperlink{https://www.gnu.org/licenses/gpl-3.0.en.html}{\textcolor{BlenderOrange}{GNU GPL}}. Di conseguenza, i giochi e le simulazioni che contengono software Blender devono essere sottoposti ad una licenza compatibile (non così i modelli, le texture, i suoni etc.).
-			Quando il gioco viene salvato come un unico file \textit{standalone}, il blend-file viene accorpato al software (il BGE player), per cui dovrà essere anch'esso compatibile con la GNU GPL. In ogni caso, è possibile caricare una blend-file autonomo dal player, cui può essere applicata qualsiasi licenza.
+			Quando il gioco viene salvato come unico file \textit{standalone}, il blend-file viene accorpato al BGE player), per cui dovrà essere anch'esso compatibile con la GNU GPL. In ogni caso, è possibile utilizzare un blend-file autonomo dal player, cui può essere applicata qualsiasi licenza.
 			\image[images/gpl.png][scale=0.4]
 		\end{frame}
 		\begin{frame}
@@ -73,6 +73,18 @@
 				\item Bullet \\ {\footnotesize\hspace{1em} Rilevamento delle collisioni e simulazione di fisica} 
 				\item Recast \\ {\footnotesize\hspace{1em} Costruzione di percorsi}
 				\item Detour \\ {\footnotesize\hspace{1em} Pathfinding e ragionamento spaziale}
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Problematiche}
+			\begin{itemize}
+				\item Benché il BGE sia integrato in Blender, il codice del motore di gioco è separato dal resto, per cui:
+				\begin{itemize}
+					\item Non tutte le funzionalità di Blender sono disponibili nel motore di gioco
+					\item Ogni bug fix in Blender deve essere replicato nell'engine
+				\end{itemize}
+				\item Documentazione incompleta, specialmente per quel che riguarda l'uso di Python
+				\item Gli stessi sviluppatori sconsigliano di avviare progetti a lungo termine in Blender in quanto è in programma una totale riscrittura dell'engine, che renderà la nuova versione incompatibile con le precedenti
 			\end{itemize}
 		\end{frame}
 		\begin{frame}
@@ -92,43 +104,42 @@
 			\end{enumerate}
 		\end{frame}
 	
-	\section{Strumenti}
+	\section{Interfaccia}
 		\begin{frame}
-			\frametitle{Editor grafico}
-			\begin{itemize}
-				\item L'editor Logico è il metodo principale di impostare e modificare la logica del gioco per i vari attori che lo compongono
-				\item La logica dei singoli oggetti selezionati nella 3D View è rappresentata dai Blocchi Logici (\textbf{Logic Bricks})
-			\end{itemize}
-		\end{frame}
-		\begin{frame}
-			\frametitle{Editor grafico - game logic}
+			\frametitle{Game logic}
 			\image[images/gamegui.png][scale=0.16]
 			Interfaccia consigliata per l'uso del BGE
 		\end{frame}
 		\begin{frame}
-			\frametitle{Editor Grafico - logic bricks}
+			\frametitle{Editor logico}
+			\begin{itemize}
+				\item L'editor logico è il metodo principale di impostare e modificare la logica del gioco per i vari attori che lo compongono
+				\item La logica dei singoli oggetti selezionati nella 3D View è rappresentata dai \textit{logic bricks} (blocchi logici)
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Editor logico - logic bricks}
 			\image[images/logic_bricks.png][scale=0.27]
 			Funzioni programmate. Sono modificabili, combinabili e:
 				\begin{itemize}
 					\item sono suddivisi in tre tipi (colonne): 
 					\begin{itemize}
-						\item\textbf{Sensors}: \footnotesize si attivano al verificarsi di un evento, 
-						\item \textbf{Controllers}: \footnotesize operano sul'input che ricevono dai sensori
-						\item \textbf{Actuators}: \footnotesize interagiscono con il gioco.
+						\item \textbf{Sensors}: si attivano al verificarsi di un evento
+						\item \textbf{Controllers}: operano sul'input che ricevono dai sensori
+						\item \textbf{Actuators}: interagiscono con il gioco.
 					\end{itemize}
-						Se un Sensore è positivo invia un impulso al Controllore che valuta la condizione ed innesca l’Attuatore.
 						\item sono collegati tra loro mediante \textbf{link}, che conducono il flusso logico tra \textit{sensor e controller} e \textit{controller e actuator}
 					\end{itemize}
 		\end{frame}
 		\begin{frame}
-			\frametitle{Editor Grafico - properties}
+			\frametitle{Editor logico - properties}
 			\image[images/props.png][scale=0.4]
-			\textbf{Properties}: variabili dei linguaggi di programmazione; Usate per salvare ed accedere dati associati ad un oggetto o del gioco stesso
+			\textbf{Properties}: variabili dei linguaggi di programmazione, usate per salvare ed accedere dati associati ad un oggetto o del gioco stesso.
 		\end{frame}
 		\begin{frame}
-			\frametitle{Editor Grafico - states}
+			\frametitle{Editor logico - states}
 			\image[images/states.png][scale=0.3]
-			\textbf{States}: stati in cui può trovarsi un oggetto; usati per definire comportamenti diversi in situazioni diverse %sleeping, awake, dead
+			\textbf{States}: stati in cui può trovarsi un oggetto, usati per definirne i diversi comportamenti. %sleeping, awake, dead
 		\end{frame}
 		\begin{frame}
 		\frametitle{Scripting con Python - 1}
