@@ -1,8 +1,4 @@
 # Blender presentations
 Topics:
-- Animations & Physics
+- Animation
 - Blender Game Engine
-
-Sound effects were downloaded from
-http://www.freesfx.co.uk
-
